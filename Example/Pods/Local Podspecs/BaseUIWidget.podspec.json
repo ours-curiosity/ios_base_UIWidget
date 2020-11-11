@@ -1,22 +1,34 @@
 {
   "name": "BaseUIWidget",
   "version": "0.1.0",
-  "summary": "A short description of BaseUIWidget.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "iOS 快速开发时可用的UI组件.",
+  "description": "iOS 快速开发时可用的UI组件.",
   "homepage": "https://github.com/ghostlordstar/BaseUIWidget",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "ghostlordstar": "zhangheshan@funlink-tech.com"
+    "ours-curiosity": "ours.curiosity@gmail.com"
   },
   "source": {
     "git": "https://github.com/ghostlordstar/BaseUIWidget.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://ours-curiosity.github.io/",
+  "requires_arc": true,
   "platforms": {
-    "ios": "8.0"
+    "ios": "10.0"
   },
-  "source_files": "BaseUIWidget/Classes/**/*"
+  "swift_versions": "5.0",
+  "source_files": "BaseUIWidget/Classes/**/*",
+  "dependencies": {
+    "Toast-Swift": [
+
+    ],
+    "BaseFoundation/Core": [
+
+    ]
+  },
+  "swift_version": "5.0"
 }

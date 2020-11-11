@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_BaseUIWidget_TestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_BaseUIWidget_TestsVersionString[];
+FOUNDATION_EXPORT double Toast_SwiftVersionNumber;
+FOUNDATION_EXPORT const unsigned char Toast_SwiftVersionString[];
 

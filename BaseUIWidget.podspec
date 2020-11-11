@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
     s.homepage         = 'https://github.com/ghostlordstar/BaseUIWidget'
     # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
-    s.author           = { 'walker' => 'heshanzhang@outlook.com' }
+    s.author           = { 'ours-curiosity' => 'ours.curiosity@gmail.com' }
     s.source           = { :git => 'https://github.com/ghostlordstar/BaseUIWidget.git', :tag => s.version.to_s }
     s.social_media_url = 'https://ours-curiosity.github.io/'
     s.requires_arc     = true
@@ -34,13 +34,7 @@ Pod::Spec.new do |s|
     
     s.source_files = 'BaseUIWidget/Classes/**/*'
     
-    # s.resource_bundles = {
-    #   'BaseUIWidget' => ['BaseUIWidget/Assets/*.png']
-    # }
-    
-    # s.public_header_files = 'Pod/Classes/**/*.h'
-    # s.frameworks = 'UIKit', 'MapKit'
     s.dependency 'Toast-Swift'
-    s.dependency 'BaseFoundation/Core', :git => 'https://github.com:ours-curiosity/ios_base_foundation.git'
-
+    s.dependency 'BaseFoundation/Core'
+    
 end

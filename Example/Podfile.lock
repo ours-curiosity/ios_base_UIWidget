@@ -1,16 +1,28 @@
 PODS:
-  - BaseUIWidget (0.1.0)
+  - BaseFoundation/Core (0.6.0)
+  - BaseUIWidget (0.1.0):
+    - BaseFoundation/Core
+    - Toast-Swift
+  - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
   - BaseUIWidget (from `../`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Toast-Swift
+  https://github.com/ours-curiosity/CTSpecs.git:
+    - BaseFoundation
 
 EXTERNAL SOURCES:
   BaseUIWidget:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BaseUIWidget: 2d6a8ec2ff5276f4c9319578166de460290b4d9a
+  BaseFoundation: 90c5e7c899df36e83bf2b09df012f23cfd300936
+  BaseUIWidget: 998d1325dc9195eb8e22ef29ef788c4b17e20ea9
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: afb355c2449ac56dcfdae5c6278aa8bd11ee0a4e
+PODFILE CHECKSUM: 1f8514c9658455a244886742aab358d5ec68aa6b
 
 COCOAPODS: 1.10.0
