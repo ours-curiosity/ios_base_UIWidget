@@ -21,11 +21,11 @@ Pod::Spec.new do |s|
     iOS 快速开发时可用的UI组件.
     DESC
     
-    s.homepage         = 'https://github.com/ghostlordstar/BaseUIWidget'
+    s.homepage         = 'https://github.com/ours-curiosity/ios_base_UIWidget'
     # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'ours-curiosity' => 'ours.curiosity@gmail.com' }
-    s.source           = { :git => 'https://github.com/ghostlordstar/BaseUIWidget.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/ours-curiosity/ios_base_UIWidget.git', :tag => s.version.to_s }
     s.social_media_url = 'https://ours-curiosity.github.io/'
     s.requires_arc     = true
 
