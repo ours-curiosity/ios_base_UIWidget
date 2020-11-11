@@ -1,6 +1,6 @@
 {
   "name": "BaseUIWidget",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "summary": "iOS 快速开发时可用的UI组件.",
   "description": "iOS 快速开发时可用的UI组件.",
   "homepage": "https://github.com/ghostlordstar/BaseUIWidget",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/ghostlordstar/BaseUIWidget.git",
-    "tag": "0.1.0"
+    "tag": "0.2.0"
   },
   "social_media_url": "https://ours-curiosity.github.io/",
   "requires_arc": true,
@@ -23,12 +23,29 @@
   "swift_versions": "5.0",
   "source_files": "BaseUIWidget/Classes/**/*",
   "dependencies": {
-    "Toast-Swift": [
-
-    ],
     "BaseFoundation/Core": [
 
     ]
   },
+  "subspecs": [
+    {
+      "name": "CTToast",
+      "source_files": "BaseUIWidget/Classes/CTToast/*",
+      "dependencies": {
+        "Toast-Swift": [
+
+        ]
+      }
+    },
+    {
+      "name": "InviteFiled",
+      "source_files": "BaseUIWidget/Classes/InviteFiled/*",
+      "dependencies": {
+        "Toast-Swift": [
+
+        ]
+      }
+    }
+  ],
   "swift_version": "5.0"
 }

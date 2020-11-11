@@ -13,8 +13,7 @@
 本项目最开始 基于 [SwifterSwift](https://github.com/SwifterSwift/SwifterSwift/blob/master/README.md)
 
 - ios 基础库
-
-- pod 地址：https://cocoapods.org/pods/ios_base_foundation
+  `BaseFoundation`
 
 ## 要求：
 - swift:5.0
@@ -22,13 +21,39 @@
 
 ## 使用：
 
+> 1. 首先添加私有库`repo`到`pod`
 ```
-pod 'ios_base_foundation','~> 0.5.0'
+pod repo add CTSpecs https://github.com/ours-curiosity/CTSpecs.git
+```
+> 2. 在`Podfile` 中添加私有库的源`source`
+```
+source 'https://github.com/ours-curiosity/CTSpecs'
+```
+> 3. 添加以下语句到`Podfile`文件
+```
+pod 'BaseFoundation' 
 ```
 
-## 内置
+###  只想导入最基础的功能(Core)：
+```
+pod 'BaseFoundation/Core'
+```
 
-- 'SnapKit', '= 5.0.1'
-- 'Toast-Swift', '= 5.0.1
+###  只导入所有扩展(Extensions)：
+```
+pod 'BaseFoundation/Extension' 
+```
 
+###  只导入UIKit相关扩展(UIKit)：
+```
+pod 'BaseFoundation/UIKit' 
+```
 
+## 备注：
+* 1.无论导入全部还是部分功能，都会导入`Core`相关部分。
+* 2.发现库版本号与github上最新版本不一致时请`pod update`。
+* 3.发现问题请提交issue。
+
+## License
+
+BaseUIWidget is available under the MIT license. See the LICENSE file for more info.
