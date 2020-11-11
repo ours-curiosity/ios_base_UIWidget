@@ -1,38 +1,40 @@
 //
 //  WindowView.swift
-//  Pods-SwiftyUIWidget_Example
+//  BaseUIWidget
 //
 //  Created by walker on 2020/11/10.
 //  Copyright (c) 2020 walker. All rights reserved.
 // 
 
 import UIKit
-enum WindowLocation {
+import BaseFoundation
+
+public enum WindowLocation {
     case center
     case centerOffset(offset: CGPoint)
     case bottomCenter(offset: CGPoint = .zero)
 }
 
-extension UIView {
+public extension UIView {
     
     /// 在window上展示
     /// - Parameters:
     ///   - location: 位置
     ///   - hasMask: 是否显示蒙版
-    func lq_showAtWindow(location: WindowLocation? = .center, hasMask: Bool? = true) {
+    func ct_showAtWindow(location: WindowLocation? = .center, hasMask: Bool? = true) {
         
-        var rect = CGRect.init(x: (SCREEN_WIDTH - self.frame.width) / 2.0, y: (SCREEN_HEIGHT - self.frame.height) / 2.0, width: self.width, height: self.height)
+        var rect = CGRect.init(x: (UIFit.width - self.frame.width) / 2.0, y: (UIFit.height - self.frame.height) / 2.0, width: self.frame.width, height: self.frame.height)
         
         switch location {
         case .centerOffset(let offset):
-            rect = CGRect.init(x: (SCREEN_WIDTH - self.frame.width) / 2.0 - offset.x, y: (SCREEN_HEIGHT - self.frame.height) / 2.0 - offset.y, width: self.width, height: self.height)
+            rect = CGRect.init(x: (UIFit.width - self.frame.width) / 2.0 - offset.x, y: (UIFit.height - self.frame.height) / 2.0 - offset.y, width: self.frame.width, height: self.frame.height)
         case .bottomCenter(let offset):
-            rect = CGRect.init(x: (SCREEN_WIDTH - self.frame.width) / 2.0 + offset.x, y: (SCREEN_HEIGHT - self.frame.height) + offset.y, width: self.width, height: self.height)
+            rect = CGRect.init(x: (UIFit.width - self.frame.width) / 2.0 + offset.x, y: (UIFit.height - self.frame.height) + offset.y, width: self.frame.width, height: self.frame.height)
         default:
-            rect = CGRect.init(x: (SCREEN_WIDTH - self.frame.width) / 2.0, y: (SCREEN_HEIGHT - self.frame.height) / 2.0, width: self.width, height: self.height)
+            rect = CGRect.init(x: (UIFit.width - self.frame.width) / 2.0, y: (UIFit.height - self.frame.height) / 2.0, width: self.frame.width, height: self.frame.height)
         }
         
-        self.lq_showAtWindow(frame: rect, hasMask: true, maskColor: ColorMaskBG, animationDuration: 0.2) { (isFinish) in
+        self.ct_showAtWindow(frame: rect, hasMask: true, maskColor: UIColor.black.withAlphaComponent(0.2), animationDuration: 0.2) { (isFinish) in
         }
     }
     
@@ -43,7 +45,7 @@ extension UIView {
     ///   - hasMask: 是否有蒙版
     ///   - maskColor: 蒙版颜色
     ///   - animationDuration: 蒙版动画时长
-    func lq_showAtWindow(frame: CGRect, hasMask: Bool, maskColor: UIColor? = ColorMaskBG, animationDuration: TimeInterval, animationComplete:((_ isFinish: Bool)->())?) {
+    func ct_showAtWindow(frame: CGRect, hasMask: Bool, maskColor: UIColor? = UIColor.black.withAlphaComponent(0.2), animationDuration: TimeInterval, animationComplete:((_ isFinish: Bool)->())?) {
         
         let windowView: UIView? = UIApplication.shared.keyWindow
         
@@ -58,7 +60,7 @@ extension UIView {
         backView.addSubview(self)
         self.frame = frame
         UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 25, initialSpringVelocity: 5, options: AnimationOptions.curveEaseInOut, animations: {
-            backView.backgroundColor = ColorMaskBG
+            backView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         }) { (isFinish) in
             animationComplete?(isFinish)
         }
@@ -66,7 +68,7 @@ extension UIView {
     
     /// 从window上移除当前视图
     /// - Parameter animationComplete: 动画结束的回调
-    func lq_removeFormWindow(animationDuration: TimeInterval ,animationComplete: ((_ isFinish: Bool)->())?) {
+    func ct_removeFormWindow(animationDuration: TimeInterval ,animationComplete: ((_ isFinish: Bool)->())?) {
         
         if let backView = self.p_getBackView() {
                         
@@ -83,13 +85,13 @@ extension UIView {
     
     /// 是否正在window上显示
     /// - Returns: 是否在显示
-    func lq_isShowAtWindow() -> Bool {
+    fileprivate func ct_isShowAtWindow() -> Bool {
         
         return self.p_getBackView() != nil
     }
 
-    @objc public func windowBackGroundTapAction(tap: UITapGestureRecognizer) {
-        LQDebugPrint("windowBackGround tap action,tap view: \(tap.view)")
+    @objc func windowBackGroundTapAction(tap: UITapGestureRecognizer) {
+        DebugPrint("windowBackGround tap action,tap view: \(String(describing: tap.view))")
     }
     
     /// 生成底部View
@@ -100,7 +102,7 @@ extension UIView {
             return oldView
         }
         
-        let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+        let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: UIFit.height))
         backView.tag = self.hash
         
         return backView

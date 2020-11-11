@@ -1,5 +1,5 @@
 import XCTest
-import BaseUIWidget
+
 
 class Tests: XCTestCase {
     

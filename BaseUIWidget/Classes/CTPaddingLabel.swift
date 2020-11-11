@@ -1,6 +1,6 @@
 //
 //  CTPaddingLabel.swift
-//  SwiftyUIWidget
+//  BaseUIWidget
 //
 //  Created by walker on 11/10/2020.
 //  Copyright (c) 2020 walker. All rights reserved.
@@ -10,7 +10,7 @@
 import UIKit
 
 /// 带内边距的UILabel
-class CTPaddingLabel: UILabel {
+public class CTPaddingLabel: UILabel {
 
     private var padding: UIEdgeInsets = .zero
     
@@ -38,11 +38,11 @@ class CTPaddingLabel: UILabel {
         set { padding.bottom = newValue }
     }
     
-    override func drawText(in rect: CGRect) {
+    public override func drawText(in rect: CGRect) {
         super.drawText(in: rect.inset(by: self.padding))
     }
 
-    override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+    public override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
         let insets = self.padding
         var rect = super.textRect(forBounds: bounds.inset(by: insets), limitedToNumberOfLines: numberOfLines)
         rect.origin.x    -= insets.left

@@ -34,7 +34,18 @@ Pod::Spec.new do |s|
     
     s.source_files = 'BaseUIWidget/Classes/**/*'
     
-    s.dependency 'Toast-Swift'
+    # CTToast
+    s.subspec 'CTToast' do |sp|
+      sp.source_files  = 'BaseUIWidget/Classes/CTToast/*'
+      sp.dependency 'Toast-Swift'
+    end
+    
+    # InviteTextFiled
+    s.subspec 'InviteFiled' do |sp|
+      sp.source_files  = 'BaseUIWidget/Classes/InviteFiled/*'
+      sp.dependency 'Toast-Swift'
+    end
+    
     s.dependency 'BaseFoundation/Core'
     
 end
