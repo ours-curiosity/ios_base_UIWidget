@@ -1,0 +1,22 @@
+{
+  "name": "BaseUIWidget",
+  "version": "0.1.0",
+  "summary": "A short description of BaseUIWidget.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ghostlordstar/BaseUIWidget",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ghostlordstar": "zhangheshan@funlink-tech.com"
+  },
+  "source": {
+    "git": "https://github.com/ghostlordstar/BaseUIWidget.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "BaseUIWidget/Classes/**/*"
+}

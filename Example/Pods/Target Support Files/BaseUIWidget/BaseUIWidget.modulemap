@@ -1,0 +1,6 @@
+framework module BaseUIWidget {
+  umbrella header "BaseUIWidget-umbrella.h"
+
+  export *
+  module * { export * }
+}

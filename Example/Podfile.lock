@@ -1,0 +1,16 @@
+PODS:
+  - BaseUIWidget (0.1.0)
+
+DEPENDENCIES:
+  - BaseUIWidget (from `../`)
+
+EXTERNAL SOURCES:
+  BaseUIWidget:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BaseUIWidget: 2d6a8ec2ff5276f4c9319578166de460290b4d9a
+
+PODFILE CHECKSUM: afb355c2449ac56dcfdae5c6278aa8bd11ee0a4e
+
+COCOAPODS: 1.10.0
