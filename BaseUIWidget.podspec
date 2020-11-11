@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'BaseUIWidget'
-    s.version          = '0.2.0'
+    s.version          = '0.2.1'
     s.summary          = 'iOS 快速开发时可用的UI组件.'
     
     # This description is used to generate tags and improve search results.
@@ -43,7 +43,6 @@ Pod::Spec.new do |s|
     # InviteTextFiled
     s.subspec 'InviteFiled' do |sp|
       sp.source_files  = 'BaseUIWidget/Classes/InviteFiled/*'
-      sp.dependency 'Toast-Swift'
     end
     
     s.dependency 'BaseFoundation/Core'
