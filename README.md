@@ -10,7 +10,7 @@
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## ios UI各种封装组件库
-  `BaseUIWidget`
+  `CTBaseUIWidget`
 
 ## 要求：
 - swift:5.0
@@ -28,21 +28,21 @@ source 'https://github.com/ours-curiosity/CTSpecs'
 ```
 > 3. 添加以下语句到`Podfile`文件
 ```
-pod 'BaseUIWidget' 
+pod 'CTBaseUIWidget' 
 ```
 
 ###  只导入toast(CTToast)：
 ```
-pod 'BaseUIWidget/CTToast'
+pod 'CTBaseUIWidget/CTToast'
 ```
 
 ###  只导入邀请码输入框(InviteFiled)：
 ```
-pod 'BaseFoundation/InviteFiled' 
+pod 'CTBaseFoundation/InviteFiled' 
 ```
 
 ## 备注：
-* 1.无论导入全部还是部分功能，都会导入`Core`相关部分。
+* 1.本库依赖`CTBaseFoundation/Core`
 * 2.发现库版本号与github上最新版本不一致时请`pod update`。
 * 3.发现问题请提交issue。
 

@@ -1,19 +1,18 @@
 PODS:
-  - BaseFoundation/Core (0.6.1)
-  - BaseUIWidget (0.2.0):
+  - BaseFoundation/Core (0.6.3)
+  - CTBaseUIWidget (0.2.3):
     - BaseFoundation/Core
-    - BaseUIWidget/CTToast (= 0.2.0)
-    - BaseUIWidget/InviteFiled (= 0.2.0)
-  - BaseUIWidget/CTToast (0.2.0):
-    - BaseFoundation/Core
-    - Toast-Swift
-  - BaseUIWidget/InviteFiled (0.2.0):
+    - CTBaseUIWidget/CTToast (= 0.2.3)
+    - CTBaseUIWidget/InviteFiled (= 0.2.3)
+  - CTBaseUIWidget/CTToast (0.2.3):
     - BaseFoundation/Core
     - Toast-Swift
+  - CTBaseUIWidget/InviteFiled (0.2.3):
+    - BaseFoundation/Core
   - Toast-Swift (5.0.1)
 
 DEPENDENCIES:
-  - BaseUIWidget (from `../`)
+  - CTBaseUIWidget (from `../`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -22,14 +21,14 @@ SPEC REPOS:
     - BaseFoundation
 
 EXTERNAL SOURCES:
-  BaseUIWidget:
+  CTBaseUIWidget:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BaseFoundation: f334b0b4845e5ddf292c48f250ac0c51ef79b7b4
-  BaseUIWidget: b3d166fe692c9f21a26318352c4638272714b991
+  BaseFoundation: f15ce540297dad34cb5e95481a5720a7094544de
+  CTBaseUIWidget: b554798cff572fe3f5447ea67d3f36d993bb5368
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: 1f8514c9658455a244886742aab358d5ec68aa6b
+PODFILE CHECKSUM: ecf50ff12df91dd8562a5104a49316170dcfe9a6
 
 COCOAPODS: 1.10.0

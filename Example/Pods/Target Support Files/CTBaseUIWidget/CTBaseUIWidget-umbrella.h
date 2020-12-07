@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double BaseUIWidgetVersionNumber;
-FOUNDATION_EXPORT const unsigned char BaseUIWidgetVersionString[];
+FOUNDATION_EXPORT double CTBaseUIWidgetVersionNumber;
+FOUNDATION_EXPORT const unsigned char CTBaseUIWidgetVersionString[];
 
