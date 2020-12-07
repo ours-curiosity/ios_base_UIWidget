@@ -25,7 +25,6 @@ class ViewController: UIViewController {
         filed.codeLimit = 4
         filed.inputBackGroundColor = UIColor.lightGray
         filed.cursorColor = UIColor.black
-        
         self.view.addSubview(filed)
     }
     

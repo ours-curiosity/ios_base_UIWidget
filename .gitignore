@@ -1,6 +1,11 @@
 # OS X
 .DS_Store
 
+# cocoapods
+/Pods
+
+# idea
+./idea
 
 # Xcode
 #

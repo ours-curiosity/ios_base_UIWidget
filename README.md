@@ -42,7 +42,7 @@ pod 'CTBaseFoundation/InviteFiled'
 ```
 
 ## 备注：
-* 1.本库依赖`CTBaseFoundation/Core`
+* 1.本库依赖`CTBaseFoundation/Core`，`CTToast`依赖`Toast-Swift`
 * 2.发现库版本号与github上最新版本不一致时请`pod update`。
 * 3.发现问题请提交issue。
 
