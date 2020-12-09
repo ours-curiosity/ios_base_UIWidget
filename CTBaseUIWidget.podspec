@@ -7,8 +7,8 @@
 #
 
 Pod::Spec.new do |s|
-    s.name             = 'BaseUIWidget'
-    s.version          = '0.2.1'
+    s.name             = 'CTBaseUIWidget'
+    s.version          = '0.2.3'
     s.summary          = 'iOS 快速开发时可用的UI组件.'
     
     # This description is used to generate tags and improve search results.

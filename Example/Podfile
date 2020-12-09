@@ -4,5 +4,5 @@ source 'https://github.com/CocoaPods/Specs.git'
 source 'https://github.com/ours-curiosity/CTSpecs'
 
 target 'BaseUIWidget_Example' do
-  pod 'BaseUIWidget', :path => '../'
+  pod 'CTBaseUIWidget', :path => '../'
 end

@@ -9,15 +9,15 @@
 import UIKit
 import CoreGraphics
 
-public class InviteFiled: UITextField {
+open class InviteFiled: UITextField {
     
     /// 文本被修改的回调
-    public var fieldTextDidChanged: ((_ text: String?)->())?
+    open var fieldTextDidChanged: ((_ text: String?)->())?
     /// 文本背景颜色
-    public var inputBackGroundColor: UIColor = UIColor.darkGray
+    open var inputBackGroundColor: UIColor = UIColor.darkGray
     
     /// 光标颜色
-    public var cursorColor: UIColor = UIColor.blue
+    open var cursorColor: UIColor = UIColor.blue
     /// 绘制计数
     private var reDrawCount: Int = 0
     /// 计数步数
@@ -35,7 +35,7 @@ public class InviteFiled: UITextField {
     }()
     
     /// 邀请码的位数限制，默认没邀请码
-    var codeLimit: Int = 0 {
+    public var codeLimit: Int = 0 {
         
         didSet {
             if codeLimit > 0 {
@@ -50,11 +50,11 @@ public class InviteFiled: UITextField {
     }
     
     /// 邀请码每个字的区域大小
-    var codeTextSize: CGSize = .zero
+    open var codeTextSize: CGSize = .zero
     /// 邀请码每个字的区域圆角
-    var codeTextRadius: CGFloat = 4.0
+    open var codeTextRadius: CGFloat = 4.0
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         p_initialize()
@@ -62,27 +62,27 @@ public class InviteFiled: UITextField {
         p_setUpUI()
     }
     
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         super.init(coder: coder)
         fatalError("init(coder:) has not been implemented")
     }
     
-    func p_initialize() {
+    private func p_initialize() {
         
         p_addNotification()
     }
     
-    func p_setUpUI() {
+    private func p_setUpUI() {
         
         
     }
     
-    func p_addNotification() {
+    private func p_addNotification() {
         
         NotificationCenter.default.addObserver(self, selector: #selector(p_textChanged), name: UITextField.textDidChangeNotification, object: self)
     }
     
-    public override func draw(_ rect: CGRect) {
+    open override func draw(_ rect: CGRect) {
         
         guard let context = UIGraphicsGetCurrentContext() else {
             // 没有邀请码就走原来的绘制逻辑
@@ -154,8 +154,8 @@ public class InviteFiled: UITextField {
         /// 绘制光标
         if cursorIndex != -1 && self.isFirstResponder {
             let corsorPath = UIBezierPath.init()
-            corsorPath.move(to: CGPoint.init(x: (gap + self.codeTextSize.width) * CGFloat(cursorIndex) + (self.codeTextSize.width / 2.0) , y: textOriginY * 2.0))
-            corsorPath.addLine(to: CGPoint.init(x: (gap + self.codeTextSize.width) * CGFloat(cursorIndex) + (self.codeTextSize.width / 2.0) , y: self.codeTextSize.height - textOriginY * 2.0))
+            corsorPath.move(to: CGPoint.init(x: (gap + self.codeTextSize.width) * CGFloat(cursorIndex) + (self.codeTextSize.width / 2.0) , y: textOriginY))
+            corsorPath.addLine(to: CGPoint.init(x: (gap + self.codeTextSize.width) * CGFloat(cursorIndex) + (self.codeTextSize.width / 2.0) , y: self.codeTextSize.height - textOriginY))
             
             let alpha: CGFloat = (CGFloat(self.reDrawCount) / 20.0)
             
@@ -169,7 +169,7 @@ public class InviteFiled: UITextField {
     
     /// 重写drawText
     /// - Parameter rect: 区域
-    public override func drawText(in rect: CGRect) {
+    open override func drawText(in rect: CGRect) {
         return
     }
     
@@ -203,11 +203,11 @@ public class InviteFiled: UITextField {
     }
     
     
-    public override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+    open override func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
         return false
     }
     
-    public override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
+    open override func selectionRects(for range: UITextRange) -> [UITextSelectionRect] {
         
         return []
     }

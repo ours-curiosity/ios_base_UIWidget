@@ -7,14 +7,27 @@
 //
 
 import UIKit
-import BaseUIWidget
+import CTBaseUIWidget
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.white
+        
+        testInviteField()
+        
     }
+    
+    func testInviteField() {
+        
+        let filed = InviteFiled.init(frame: CGRect.init(x: 100, y: 400, width: 200, height: 40))
+        filed.codeLimit = 4
+        filed.inputBackGroundColor = UIColor.lightGray
+        filed.cursorColor = UIColor.black
+        self.view.addSubview(filed)
+    }
+    
     
     @IBAction func p_showToast(_ sender: UIButton) {
         
