@@ -17,7 +17,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Toast-Swift
-  https://github.com/ours-curiosity/CTSpecs.git:
+  https://github.com/ours-curiosity/CTSpecs:
     - BaseFoundation
 
 EXTERNAL SOURCES:

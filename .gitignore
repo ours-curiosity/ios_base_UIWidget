@@ -2,7 +2,7 @@
 .DS_Store
 
 # cocoapods
-/Pods
+Pods/
 
 # idea
 ./idea

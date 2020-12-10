@@ -15,25 +15,25 @@ public class CTPaddingLabel: UILabel {
     private var padding: UIEdgeInsets = .zero
     
     @IBInspectable
-    var paddingLeft: CGFloat {
+    public var paddingLeft: CGFloat {
         get { return padding.left }
         set { padding.left = newValue }
     }
     
     @IBInspectable
-    var paddingRight: CGFloat {
+    public var paddingRight: CGFloat {
         get { return padding.right }
         set { padding.right = newValue }
     }
     
     @IBInspectable
-    var paddingTop: CGFloat {
+    public var paddingTop: CGFloat {
         get { return padding.top }
         set { padding.top = newValue }
     }
     
     @IBInspectable
-    var paddingBottom: CGFloat {
+    public var paddingBottom: CGFloat {
         get { return padding.bottom }
         set { padding.bottom = newValue }
     }
