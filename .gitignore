@@ -3,6 +3,7 @@
 
 # cocoapods
 Pods/
+Podfile.lock
 
 # idea
 ./idea
