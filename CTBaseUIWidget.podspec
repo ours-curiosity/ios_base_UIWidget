@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'CTBaseUIWidget'
-    s.version          = '0.2.4'
+    s.version          = '0.2.5'
     s.summary          = 'iOS 快速开发时可用的UI组件.'
     
     # This description is used to generate tags and improve search results.
@@ -45,6 +45,6 @@ Pod::Spec.new do |s|
       sp.source_files  = 'BaseUIWidget/Classes/InviteFiled/*'
     end
     
-    s.dependency 'BaseFoundation/Core'
+    s.dependency 'CTBaseFoundation/UIKit'
     
 end

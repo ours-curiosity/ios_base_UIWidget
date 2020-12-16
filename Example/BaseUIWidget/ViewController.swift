@@ -8,6 +8,7 @@
 
 import UIKit
 import CTBaseUIWidget
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -28,6 +29,10 @@ class ViewController: UIViewController {
         self.view.addSubview(filed)
     }
     
+    @IBAction func smsBtnAction(_ sender: UIButton) {
+        
+        SysJumpManager.stand.sendSMS(rootVC: self, body: "test")
+    }
     
     @IBAction func p_showToast(_ sender: UIButton) {
         
