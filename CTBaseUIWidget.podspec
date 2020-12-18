@@ -45,6 +45,11 @@ Pod::Spec.new do |s|
       sp.source_files  = 'BaseUIWidget/Classes/InviteFiled/*'
     end
     
+    # ActiveLabel
+    s.subspec 'ActiveLabel' do |sp|
+      sp.source_files  = 'BaseUIWidget/Classes/ActiveLabel/*'
+    end
+    
     s.dependency 'CTBaseFoundation/UIKit'
     
 end
