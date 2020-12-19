@@ -27,6 +27,19 @@ public class SysJumpManager: NSObject {
             UIViewController.topViewController?.present(smsVC, animated: true, completion: nil)
         }
     }
+    public func sendEmail(errMsg:String,body:String,title:String,email:String)->Error{
+        /// TODO :
+        if MFMailComposeViewController.canSendMail(){//是否可以发邮件 // 如果不能,去系统设置接收邮箱
+            let mailView = MFMailComposeViewController()
+            mailView.mailComposeDelegate = self
+            mailView.setToRecipients([email])//接收邮件的邮箱
+            mailView.setSubject(title)
+            mailView.setMessageBody(body, isHTML: false)
+            self.present(mailView, animated: false, completion: nil)
+        }else{
+            return NSError(domain: "cannot sent", code: -, userInfo: [:])
+        }
+    }
 }
 
 extension SysJumpManager: MFMessageComposeViewControllerDelegate {
