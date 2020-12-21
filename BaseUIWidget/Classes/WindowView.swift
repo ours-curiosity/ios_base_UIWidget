@@ -31,7 +31,7 @@ public extension UIView {
         default:
             rect = CGRect.init(x: (UIFit.width - self.frame.width) / 2.0, y: (UIFit.height - self.frame.height) / 2.0, width: self.frame.width, height: self.frame.height)
         }
-        self.ct_showAtWindow(frame: rect, hasMask: true, maskColor: UIColor.black.withAlphaComponent(0.2), hasGesture: hasGesture ?? true, animationDuration: 0.2, animationComplete: animationComplete)
+        self.ct_showAtWindow(frame: rect, hasMask: true, maskColor: UIColor.black.withAlphaComponent(0.6), hasGesture: hasGesture ?? true, animationDuration: 0.2, animationComplete: animationComplete)
     }
     
     
@@ -41,7 +41,7 @@ public extension UIView {
     ///   - hasMask: 是否有蒙版
     ///   - maskColor: 蒙版颜色
     ///   - animationDuration: 蒙版动画时长
-    func ct_showAtWindow(frame: CGRect, hasMask: Bool, maskColor: UIColor? = UIColor.black.withAlphaComponent(0.2), hasGesture: Bool, animationDuration: TimeInterval, animationComplete:((_ isFinish: Bool)->())?) {
+    func ct_showAtWindow(frame: CGRect, hasMask: Bool, maskColor: UIColor? = UIColor.black.withAlphaComponent(0.6), hasGesture: Bool, animationDuration: TimeInterval, animationComplete:((_ isFinish: Bool)->())?) {
         let windowView: UIView? = UIApplication.shared.keyWindow
         if windowView == nil {
             return
@@ -55,7 +55,7 @@ public extension UIView {
         backView.addSubview(self)
         self.frame = frame
         UIView.animate(withDuration: animationDuration, delay: 0, usingSpringWithDamping: 25, initialSpringVelocity: 5, options: AnimationOptions.curveEaseInOut, animations: {
-            backView.backgroundColor = hasMask ? UIColor.black.withAlphaComponent(0.2) : UIColor.clear
+            backView.backgroundColor = hasMask ? UIColor.black.withAlphaComponent(0.6) : UIColor.clear
         }) { (isFinish) in
             animationComplete?(isFinish)
         }
