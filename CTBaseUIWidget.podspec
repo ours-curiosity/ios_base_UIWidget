@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'CTBaseUIWidget'
-    s.version          = '0.3.3'
+    s.version          = '0.3.5'
     s.summary          = 'iOS 快速开发时可用的UI组件.'
     
     # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
     s.source           = { :git => 'https://github.com/ours-curiosity/ios_base_UIWidget.git', :tag => s.version.to_s }
     s.social_media_url = 'https://ours-curiosity.github.io/'
     s.requires_arc     = true
-
+    
     s.ios.deployment_target = '10.0'
     s.swift_version = "5.0"
     
@@ -36,18 +36,24 @@ Pod::Spec.new do |s|
     
     # CTToast
     s.subspec 'CTToast' do |sp|
-      sp.source_files  = 'BaseUIWidget/Classes/CTToast/*'
-      sp.dependency 'Toast-Swift'
+        sp.source_files = 'BaseUIWidget/Classes/CTToast/*'
+        sp.dependency 'Toast-Swift'
     end
     
     # InviteTextFiled
     s.subspec 'InviteFiled' do |sp|
-      sp.source_files  = 'BaseUIWidget/Classes/InviteFiled/*'
+        sp.source_files = 'BaseUIWidget/Classes/InviteFiled/*'
     end
     
     # ActiveLabel
     s.subspec 'ActiveLabel' do |sp|
-      sp.source_files  = 'BaseUIWidget/Classes/ActiveLabel/*'
+        sp.source_files = 'BaseUIWidget/Classes/ActiveLabel/*'
+    end
+    
+    # InputView
+    s.subspec 'CTInputView' do |sp|
+        sp.source_files = 'BaseUIWidget/Classes/CTInputView/*'
+        sp.dependency 'SnapKit'
     end
     
     s.dependency 'CTBaseFoundation/UIKit'

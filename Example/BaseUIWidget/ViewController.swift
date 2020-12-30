@@ -47,4 +47,12 @@ class ViewController: UIViewController {
             CTToast.ct_hideIndicator(baseView: nil, delay: 0, preventUserAction: false)
         }
     }
+    
+    @IBAction func inputViewAction(_ sender: UIButton) {
+        
+        let inptView = CTInputView.init(placeHolder: "test 123")
+        
+        inptView.frame = UIScreen.main.bounds
+        inptView.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: true, hasGesture: nil, animationComplete: nil)
+    }
 }

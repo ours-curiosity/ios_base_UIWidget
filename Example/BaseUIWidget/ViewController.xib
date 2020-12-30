@@ -55,12 +55,26 @@
                         <action selector="smsBtnAction:" destination="-1" eventType="touchUpInside" id="rRy-vx-MD3"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="If6-xa-zkc">
+                    <rect key="frame" x="147" y="344" width="120" height="30"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="4Fk-BB-fWc"/>
+                        <constraint firstAttribute="height" constant="30" id="dcZ-5S-HBh"/>
+                    </constraints>
+                    <state key="normal" title="CTInputView"/>
+                    <connections>
+                        <action selector="inputViewAction:" destination="-1" eventType="touchUpInside" id="psh-SP-0OZ"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstItem="k4A-fs-yeW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="Noq-P7-PgN"/>
                 <constraint firstItem="kLh-X2-dDU" firstAttribute="top" secondItem="k4A-fs-yeW" secondAttribute="bottom" constant="30" id="QeH-lc-xLE"/>
+                <constraint firstItem="If6-xa-zkc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="THE-zd-VR5"/>
+                <constraint firstItem="If6-xa-zkc" firstAttribute="top" secondItem="bfh-NM-NWz" secondAttribute="bottom" constant="30" id="UhK-nm-guF"/>
                 <constraint firstItem="kLh-X2-dDU" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YxD-SH-uGZ"/>
                 <constraint firstItem="bfh-NM-NWz" firstAttribute="top" secondItem="kLh-X2-dDU" secondAttribute="bottom" constant="30" id="kAW-5q-vlZ"/>
                 <constraint firstItem="bfh-NM-NWz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sD9-DY-012"/>
