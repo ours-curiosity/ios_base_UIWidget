@@ -34,20 +34,30 @@ public class CTMultiLineInputView: UIView {
     
     func initialize() {
         self.backgroundColor = UIColor.white
+        self.isUserInteractionEnabled = true
     }
     
     func setUpUI() {
-        self.addSubview(self.textView)
-        self.addSubview(self.sendBtn)
+        self.addSubview(self.textBgView)
+        self.textBgView.addSubview(self.textView)
+        self.textBgView.addSubview(self.sendBtn)
         layout()
     }
     
     func layout() {
+        
+        self.textBgView.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(16.scale)
+            make.right.equalToSuperview().offset(-16.scale)
+            make.top.equalToSuperview().offset(12.scale)
+            make.bottom.equalToSuperview().offset(-12.scale)
+        }
+        
         self.textView.snp.makeConstraints { (make) in
-            make.left.equalToSuperview().offset(10.scale)
-            make.right.equalToSuperview().offset(-10.scale)
-            make.top.equalToSuperview().offset(10.scale)
-            make.bottom.equalToSuperview().offset(-10.scale)
+            make.left.equalToSuperview().offset(5.scale)
+            make.right.equalToSuperview().offset(-5.scale)
+            make.top.equalToSuperview().offset(3.scale)
+            make.bottom.equalToSuperview().offset(-3.scale)
         }
     }
     
@@ -80,20 +90,18 @@ public class CTMultiLineInputView: UIView {
         UIView.animate(withDuration: duration) {
             self.frame = newFrame
         }
-        DebugPrint("newFrame:\(newFrame)")
     }
     
     // MARK: - private method
     func textViewValueChanged(_ text: String) {
-        let textHeight = text.textRect(attributes: self.textView.attributedText.attributes, maxSize: CGSize.init(width: UIFit.width - 20.scale - 15, height: CGFloat.greatestFiniteMagnitude)).size.height
+        let textHeight = text.textRect(attributes: self.textView.attributedText.attributes, maxSize: CGSize.init(width: self.textView.width - 10, height: CGFloat.greatestFiniteMagnitude)).size.height
         
         self.fixViewHeight(textHeight: textHeight)
     }
     
     func fixViewHeight(textHeight: CGFloat = 34) {
-        
-        if textHeight != self.curTextHeight && textHeight >= 34 && textHeight <= self.maxTextHeight {
-            let diffHeight = textHeight - self.curTextHeight
+        if textHeight != self.curTextHeight && textHeight <= self.maxTextHeight {
+            let diffHeight = (textHeight <= 34 ? 34 : textHeight) - self.curTextHeight
             let oldFrame = self.frame
             let newFrame = CGRect.init(x: oldFrame.origin.x, y: oldFrame.origin.y - diffHeight, width: oldFrame.size.width, height: oldFrame.height + diffHeight)
             self.curTextHeight = textHeight <= 34 ? 34 : textHeight
@@ -116,12 +124,18 @@ public class CTMultiLineInputView: UIView {
         textView.showsHorizontalScrollIndicator = false
         textView.returnKeyType = .send
         textView.enablesReturnKeyAutomatically = true
+        textView.backgroundColor = UIColor.clear
         return textView
     }()
     
     public lazy var sendBtn: UIButton = {
         let sendBtn = UIButton.init()
         return sendBtn
+    }()
+    
+    public lazy var textBgView: UIView = {
+        let textBgView = UIView.init()
+        return textBgView
     }()
 }
 
@@ -135,7 +149,6 @@ extension CTMultiLineInputView: UITextViewDelegate {
             return true
         }
     }
-    
     public func textViewDidChange(_ textView: UITextView) {
         self.textViewValueChanged(textView.text)
     }
@@ -143,7 +156,7 @@ extension CTMultiLineInputView: UITextViewDelegate {
 
 extension CTMultiLineInputView {
     public override func windowBackGroundTapAction(tap: UITapGestureRecognizer) {
-        if self.textView.text.count <= 0 {
+        if tap.location(in: self).y < -15 {
             self.hideKeyboard()
         }
     }

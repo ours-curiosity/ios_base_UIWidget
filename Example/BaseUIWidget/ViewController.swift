@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.view.backgroundColor = UIColor.white
         
         testInviteField()
@@ -56,14 +56,16 @@ class ViewController: UIViewController {
     }
     
     lazy var inputTextView: CTMultiLineInputView = {
-        let inputTextView = CTMultiLineInputView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: 34 + 20.scale))
+        let inputTextView = CTMultiLineInputView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: 40 + 24.scale))
+        inputTextView.backgroundColor = UIColor.gray
+        inputTextView.textBgView.backgroundColor = UIColor.darkGray
+        inputTextView.textBgView.cornerRadius = 20
         inputTextView.sendBtnAction = {(text, inputView) in
             DebugPrint("text: \(text)")
         }
         return inputTextView
     }()
     @IBAction func showInputBtnAction(_ sender: UIButton) {
-        
         self.inputTextView.showKeyboard()
     }
 }
