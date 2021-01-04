@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'CTBaseUIWidget'
-    s.version          = '0.3.9.1'
+    s.version          = '0.3.9.2'
     s.summary          = 'iOS 快速开发时可用的UI组件.'
     
     # This description is used to generate tags and improve search results.
@@ -69,20 +69,20 @@ Pod::Spec.new do |s|
         sp.source_files = 'BaseUIWidget/Classes/ActiveLabel/*'
     end
     
-#    # InputView
-#    s.subspec 'CTInputView' do |sp|
-#        sp.source_files = 'BaseUIWidget/Classes/CTInputView/*'
-#        sp.dependency 'BaseUIWidget/WindowView'
-#        sp.dependency 'SnapKit'
-#        sp.dependency 'KMPlaceholderTextView'
-#        sp.dependency 'CTBaseFoundation/Extension'
-#        s.dependency 'CTBaseFoundation/UIKit'
-#    end
+    # InputView
+    s.subspec 'CTInputView' do |sp|
+        sp.source_files = 'BaseUIWidget/Classes/CTInputView/*'
+        sp.dependency 'BaseUIWidget/WindowView'
+        sp.dependency 'SnapKit'
+        sp.dependency 'KMPlaceholderTextView'
+        sp.dependency 'CTBaseFoundation/Extension'
+        s.dependency 'CTBaseFoundation/UIKit'
+    end
     
     s.dependency 'CTBaseFoundation/UIKit'
     
-        s.dependency 'SnapKit'
-        s.dependency 'KMPlaceholderTextView'
-        s.dependency 'CTBaseFoundation/Extension'
-        s.dependency 'CTBaseFoundation/UIKit'
+#        s.dependency 'SnapKit'
+#        s.dependency 'KMPlaceholderTextView'
+#        s.dependency 'CTBaseFoundation/Extension'
+#        s.dependency 'CTBaseFoundation/UIKit'
 end
