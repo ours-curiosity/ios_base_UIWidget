@@ -67,10 +67,24 @@
                         <action selector="inputViewAction:" destination="-1" eventType="touchUpInside" id="psh-SP-0OZ"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4FW-qp-msC">
+                    <rect key="frame" x="162" y="434" width="90" height="30"/>
+                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="StP-yU-cM0"/>
+                        <constraint firstAttribute="width" constant="90" id="uZ0-4q-h21"/>
+                    </constraints>
+                    <state key="normal" title="多行输入框"/>
+                    <connections>
+                        <action selector="showInputBtnAction:" destination="-1" eventType="touchUpInside" id="l6l-Uc-geJ"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="4FW-qp-msC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="IXm-V0-FmR"/>
+                <constraint firstItem="4FW-qp-msC" firstAttribute="top" secondItem="If6-xa-zkc" secondAttribute="bottom" constant="60" id="LCX-LO-Ced"/>
                 <constraint firstItem="k4A-fs-yeW" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="120" id="Noq-P7-PgN"/>
                 <constraint firstItem="kLh-X2-dDU" firstAttribute="top" secondItem="k4A-fs-yeW" secondAttribute="bottom" constant="30" id="QeH-lc-xLE"/>
                 <constraint firstItem="If6-xa-zkc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="THE-zd-VR5"/>
@@ -80,7 +94,7 @@
                 <constraint firstItem="bfh-NM-NWz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="sD9-DY-012"/>
                 <constraint firstItem="k4A-fs-yeW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ybJ-il-bPN"/>
             </constraints>
-            <point key="canvasLocation" x="141" y="141"/>
+            <point key="canvasLocation" x="796" y="116"/>
         </view>
     </objects>
     <resources>

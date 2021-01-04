@@ -8,16 +8,15 @@
 
 import UIKit
 import CTBaseUIWidget
-
+import CTBaseFoundation
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.view.backgroundColor = UIColor.white
         
         testInviteField()
-        
     }
     
     func testInviteField() {
@@ -55,4 +54,15 @@ class ViewController: UIViewController {
         inptView.frame = UIScreen.main.bounds
         inptView.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: true, hasGesture: nil, animationComplete: nil)
     }
+    
+    lazy var inputTextView: CTMultiLineInputView = {
+        let inputTextView = CTMultiLineInputView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: 34 + 20.scale))
+        return inputTextView
+    }()
+    @IBAction func showInputBtnAction(_ sender: UIButton) {
+        
+        self.inputTextView.showKeyboard()
+
+    }
 }
+
