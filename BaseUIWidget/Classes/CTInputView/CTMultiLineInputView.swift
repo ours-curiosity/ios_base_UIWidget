@@ -48,7 +48,7 @@ public class CTMultiLineInputView: UIView {
     }
     
     // MARK: - public method
-    public func showKeyboard(text: String?) {
+    public func showKeyboard(text: String? = "") {
         self.textView.text = text
         self.alpha = 1.0
         self.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: false, hasGesture: false, animationComplete: nil)
