@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'CTBaseUIWidget'
-    s.version          = '0.3.9.3'
+    s.version          = '0.4.0.0'
     s.summary          = 'iOS 快速开发时可用的UI组件.'
     
     # This description is used to generate tags and improve search results.
@@ -49,8 +49,9 @@ Pod::Spec.new do |s|
         sp.source_files = 'BaseUIWidget/Classes/JumpManager/*'
     end
     
+    # keyboard monitor
     s.subspec 'KeyBoardMonitor' do |sp|
-        sp.source_files = 'BaseUIWidget/Classes/KeyBoardMonitor/*'
+        sp.source_files = 'BaseUIWidget/Classes/CTInputView/KeyboardMonitor.swift'
     end
     
     # CTToast
