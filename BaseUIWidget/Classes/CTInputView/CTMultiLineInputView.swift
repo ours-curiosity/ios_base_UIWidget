@@ -12,7 +12,11 @@ import CTBaseFoundation
 public class CTMultiLineInputView: UIView {
     
     var curTextHeight: CGFloat = 34
+    /// 最大文本高度
     public var maxTextHeight: CGFloat = 82
+    /// 发送按钮事件
+    public var sendBtnAction: ((_ text: String, _ inputView: CTMultiLineInputView)->())?
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -51,7 +55,7 @@ public class CTMultiLineInputView: UIView {
     public func showKeyboard(text: String? = "") {
         self.textView.text = text
         self.alpha = 1.0
-        self.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: false, hasGesture: false, animationComplete: nil)
+        self.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: true, hasGesture: true, animationComplete: nil)
         KeyBoardMonitor.stand.monitor(enable: true) { (_ changeType: KeyBoardChangeType, _ startFrame: CGRect, _ endFrame: CGRect, _ duration: TimeInterval, _ userInfo: [AnyHashable: Any]?) in
             if changeType == .willChangeFrame {
                 self.keyboardChanged(endFrame: endFrame, duration: duration)
@@ -110,9 +114,8 @@ public class CTMultiLineInputView: UIView {
         textView.delegate = self
         textView.showsVerticalScrollIndicator = false
         textView.showsHorizontalScrollIndicator = false
-        if #available(iOS 11.0, *) {
-            textView.contentInsetAdjustmentBehavior = .never
-        }
+        textView.returnKeyType = .send
+        textView.enablesReturnKeyAutomatically = true
         return textView
     }()
     
@@ -124,11 +127,24 @@ public class CTMultiLineInputView: UIView {
 
 extension CTMultiLineInputView: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        self.textViewValueChanged(textView.text + text)
-        return true
+        if text == "\n" {
+            self.sendBtnAction?(textView.text, self)
+            return false
+        }else {
+            self.textViewValueChanged(textView.text + text)
+            return true
+        }
     }
     
     public func textViewDidChange(_ textView: UITextView) {
         self.textViewValueChanged(textView.text)
+    }
+}
+
+extension CTMultiLineInputView {
+    public override func windowBackGroundTapAction(tap: UITapGestureRecognizer) {
+        if self.textView.text.count <= 0 {
+            self.hideKeyboard()
+        }
     }
 }

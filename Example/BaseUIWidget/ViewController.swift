@@ -57,12 +57,14 @@ class ViewController: UIViewController {
     
     lazy var inputTextView: CTMultiLineInputView = {
         let inputTextView = CTMultiLineInputView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: 34 + 20.scale))
+        inputTextView.sendBtnAction = {(text, inputView) in
+            DebugPrint("text: \(text)")
+        }
         return inputTextView
     }()
     @IBAction func showInputBtnAction(_ sender: UIButton) {
         
         self.inputTextView.showKeyboard()
-
     }
 }
 
