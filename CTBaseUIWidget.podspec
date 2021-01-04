@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'CTBaseUIWidget'
-    s.version          = '0.3.9'
+    s.version          = '0.3.9.1'
     s.summary          = 'iOS 快速开发时可用的UI组件.'
     
     # This description is used to generate tags and improve search results.
@@ -46,7 +46,7 @@ Pod::Spec.new do |s|
     
     # SysJumpManager
     s.subspec 'SysJumpManager' do |sp|
-        sp.source_files = 'BaseUIWidget/Classes/SysJumpManager/*'
+        sp.source_files = 'BaseUIWidget/Classes/JumpManager/*'
     end
     
     s.subspec 'KeyBoardMonitor' do |sp|
@@ -80,4 +80,9 @@ Pod::Spec.new do |s|
 #    end
     
     s.dependency 'CTBaseFoundation/UIKit'
+    
+        s.dependency 'SnapKit'
+        s.dependency 'KMPlaceholderTextView'
+        s.dependency 'CTBaseFoundation/Extension'
+        s.dependency 'CTBaseFoundation/UIKit'
 end
