@@ -117,7 +117,7 @@ public class CTMultiLineInputView: UIView {
     public lazy var textView: KMPlaceholderTextView = {
         let textView = KMPlaceholderTextView.init()
         textView.placeholder = "Type to chat ..."
-        textView.cornerRadius = 4.scale
+        textView.ct_cornerRadius = 4.scale
         textView.font = UIFont.systemFont(ofSize: 17.0)
         textView.delegate = self
         textView.showsVerticalScrollIndicator = false

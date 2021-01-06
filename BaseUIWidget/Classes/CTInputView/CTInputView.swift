@@ -97,7 +97,7 @@ public class CTInputView: UIView {
         textFiled.textColor = UIColor.black
         textFiled.backgroundColor = UIColor.white
         textFiled.placeholder = self.placeHolder
-        textFiled.cornerRadius = 8.scale
+        textFiled.ct_cornerRadius = 8.scale
         textFiled.textAlignment = .center
         return textFiled
     }()
@@ -123,7 +123,7 @@ public class CTInputView: UIView {
         done.setTitle("Done", for: UIControl.State.normal)
         done.backgroundColor = UIColor.white
         done.setTitleColor(UIColor.black, for: UIControl.State.normal)
-        done.cornerRadius = 4.scale
+        done.ct_cornerRadius = 4.scale
         return done
     }()
     
