@@ -14,6 +14,12 @@ public class CTMultiLineInputView: UIView {
     var curTextHeight: CGFloat = 34
     /// 最大文本高度
     public var maxTextHeight: CGFloat = 82
+    // 最大字数限制
+    public var maxTextLen: Int = 150
+    // 最小字数限制
+    public var minTextLen: Int = 0
+    // 是否忽略空格
+    public var autoRemoveSpaces: Bool = false
     /// 发送按钮事件
     public var sendBtnAction: ((_ text: String, _ inputView: CTMultiLineInputView)->())?
     
@@ -35,6 +41,7 @@ public class CTMultiLineInputView: UIView {
     func initialize() {
         self.backgroundColor = UIColor.white
         self.isUserInteractionEnabled = true
+        NotificationCenter.default.addObserver(self, selector: #selector(textViewTextDidChange), name: UITextField.textDidChangeNotification, object: nil)
     }
     
     func setUpUI() {
@@ -58,6 +65,17 @@ public class CTMultiLineInputView: UIView {
             make.right.equalToSuperview().offset(-5.scale)
             make.top.equalToSuperview().offset(3.scale)
             make.bottom.equalToSuperview().offset(-3.scale)
+        }
+    }
+    
+    @objc private func textViewTextDidChange() {
+        // 总的字符
+        let fullText = self.textView.text ?? ""
+        // 修复后的字符串
+        let fixText: String = self.autoRemoveSpaces ? fullText.removeHeadAndTailSpaceAndNewlines() : fullText
+        // 截断字符串
+        if fixText.countOfChars() > self.maxTextLen {
+            self.textView.text = fixText.subString(to: self.maxTextLen)
         }
     }
     
@@ -94,6 +112,7 @@ public class CTMultiLineInputView: UIView {
     
     // MARK: - private method
     func textViewValueChanged(_ text: String) {
+        self.textViewTextDidChange()
         let textHeight = text.textRect(attributes: self.textView.attributedText.attributes, maxSize: CGSize.init(width: self.textView.width - 10, height: CGFloat.greatestFiniteMagnitude)).size.height
         
         self.fixViewHeight(textHeight: textHeight)

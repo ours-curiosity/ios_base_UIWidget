@@ -10,15 +10,23 @@ import CTBaseFoundation
 import SnapKit
 
 public class CTInputView: UIView {
-    
+//    占位文本
     public var placeHolder: String = "" {
         didSet{
             self.textFiled.placeholder = placeHolder
         }
     }
-
+    // 最大字数限制
+    public var maxTextLen: Int = 15
+    // 最小字数限制
+    public var minTextLen: Int = 0
+    // 是否忽略空格
+    public var autoRemoveSpaces: Bool = false
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        addNotification()
         setUpUI()
     }
 
@@ -30,6 +38,10 @@ public class CTInputView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func addNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(textFiledDidChange), name: UITextField.textDidChangeNotification, object: nil)
     }
     
     func setUpUI() {
@@ -83,6 +95,17 @@ public class CTInputView: UIView {
         self.textFiled.resignFirstResponder()
     }
     
+    @objc private func textFiledDidChange() {
+        // 总的字符
+        let fullText = self.textFiled.text ?? ""
+        // 修复后的字符串
+        let fixText: String = self.autoRemoveSpaces ? fullText.removeHeadAndTailSpaceAndNewlines() : fullText
+        // 截断字符串
+        if fixText.countOfChars() > self.maxTextLen {
+            self.textFiled.text = fixText.subString(to: self.maxTextLen)
+        }
+    }
+    
     // MARK: - lazy load --
     public lazy var backView: UIView = {
         let backView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: UIFit.height))
@@ -99,6 +122,7 @@ public class CTInputView: UIView {
         textFiled.placeholder = self.placeHolder
         textFiled.ct_cornerRadius = 8.scale
         textFiled.textAlignment = .center
+        textFiled.delegate = self
         return textFiled
     }()
     
@@ -126,6 +150,22 @@ public class CTInputView: UIView {
         done.ct_cornerRadius = 4.scale
         return done
     }()
-    
 }
 
+extension CTInputView: UITextFieldDelegate {
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        // 总的字符
+//        let fullText = (textFiled.text ?? "" + string)
+//        // 修复后的字符串
+//        let fixText: String = self.autoRemoveSpaces ? fullText.removeHeadAndTailSpaceAndNewlines() : fullText
+//        // 是否超出最大字数限制
+//        if fixText.countOfChars() > self.maxTextLen {
+//            return false
+//        }else {
+//            return true
+//        }
+        
+        self.textFiledDidChange()
+        return true
+    }
+}

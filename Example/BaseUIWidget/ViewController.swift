@@ -49,14 +49,15 @@ class ViewController: UIViewController {
     
     @IBAction func inputViewAction(_ sender: UIButton) {
         
-        let inptView = CTInputView.init(placeHolder: "test 123")
-        
-        inptView.frame = UIScreen.main.bounds
-        inptView.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: true, hasGesture: nil, animationComplete: nil)
+        let inptView1 = CTInputView.init(placeHolder: "test 123")
+        inptView1.maxTextLen = 10
+        inptView1.frame = UIScreen.main.bounds
+        inptView1.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: true, hasGesture: nil, animationComplete: nil)
     }
     
     lazy var inputTextView: CTMultiLineInputView = {
         let inputTextView = CTMultiLineInputView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: 40 + 24.scale))
+        inputTextView.maxTextLen = 40
         inputTextView.backgroundColor = UIColor.gray
         inputTextView.textBgView.backgroundColor = UIColor.darkGray
         inputTextView.textBgView.ct_cornerRadius = 20
