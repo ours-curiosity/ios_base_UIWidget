@@ -10,6 +10,7 @@ import UIKit
 import CTBaseFoundation
 
 public enum WindowLocation {
+    case topCenter(offset: CGPoint = .zero)
     case center
     case centerOffset(offset: CGPoint)
     case bottomCenter(offset: CGPoint = .zero)
@@ -24,6 +25,8 @@ public extension UIView {
     func ct_showAtWindow(location: WindowLocation? = .center, hasMask: Bool? = true, hasGesture: Bool? = true, animationComplete:((_ isFinish: Bool)->())?) {
         var rect = CGRect.init(x: (UIFit.width - self.frame.width) / 2.0, y: (UIFit.height - self.frame.height) / 2.0, width: self.frame.width, height: self.frame.height)
         switch location {
+        case .topCenter(let offset):
+            rect = CGRect.init(x: (UIFit.width - self.frame.width) / 2.0 - offset.x, y: 0 + offset.y, width: self.frame.width, height: self.frame.height)
         case .centerOffset(let offset):
             rect = CGRect.init(x: (UIFit.width - self.frame.width) / 2.0 - offset.x, y: (UIFit.height - self.frame.height) / 2.0 - offset.y, width: self.frame.width, height: self.frame.height)
         case .bottomCenter(let offset):
