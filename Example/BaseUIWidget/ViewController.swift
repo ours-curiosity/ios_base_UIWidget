@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     
     @IBAction func smsBtnAction(_ sender: UIButton) {
         
-        SysJumpManager.stand.sendSMS(rootVC: self, body: "test", phones: ["18210208857"])
+        SysJumpManager.stand.sendSMS(rootVC: self, body: "test")
     }
     
     @IBAction func p_showToast(_ sender: UIButton) {
