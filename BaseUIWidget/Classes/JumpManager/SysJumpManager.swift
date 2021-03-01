@@ -13,7 +13,7 @@ public class SysJumpManager: NSObject {
     public static let stand = SysJumpManager()
     private override init(){}
     
-    public func sendSMS(rootVC: UIViewController?, body: String?){
+    public func sendSMS(rootVC: UIViewController?, body: String?, phones: [String]?){
         if !MFMessageComposeViewController.canSendText() {
             print("MFMessage can't send text!")
             return
@@ -21,6 +21,10 @@ public class SysJumpManager: NSObject {
         let smsVC = MFMessageComposeViewController.init()
         smsVC.body = body
         smsVC.messageComposeDelegate = self
+        if phones != nil && phones!.count > 0 {
+            smsVC.recipients = phones
+        }
+        
         if rootVC != nil{
             rootVC?.present(smsVC, animated: true, completion: nil)
         }else {
