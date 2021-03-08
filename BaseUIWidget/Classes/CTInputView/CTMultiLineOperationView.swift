@@ -72,11 +72,13 @@ public class CTMultiLineOperationView: UIView {
         self.cancelBtn.snp.makeConstraints { (make) in
             make.left.equalToSuperview().offset(16.scale)
             make.top.equalTo(self.textBgView.snp.bottom).offset(16.scale)
+            make.size.equalTo(CGSize.init(width: 60.scale, height: 30.scale))
         }
         
         self.doneBtn.snp.makeConstraints { (make) in
             make.right.equalToSuperview().offset(-16.scale)
             make.top.equalTo(self.textBgView.snp.bottom).offset(16.scale)
+            make.size.equalTo(CGSize.init(width: 60.scale, height: 30.scale))
         }
     }
     
@@ -184,6 +186,7 @@ public class CTMultiLineOperationView: UIView {
     public lazy var textBgView: UIView = {
         let textBgView = UIView.init()
         textBgView.backgroundColor = UIColor.white
+        textBgView.ct_cornerRadius = 8
         return textBgView
     }()
 }
