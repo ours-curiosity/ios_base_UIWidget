@@ -50,6 +50,7 @@ public class CTMultiLineOperationView: UIView {
         self.textBgView.addSubview(self.textView)
         self.addSubview(self.doneBtn)
         self.addSubview(self.cancelBtn)
+        
         layout()
     }
     
@@ -80,6 +81,8 @@ public class CTMultiLineOperationView: UIView {
             make.top.equalTo(self.textBgView.snp.bottom).offset(16.scale)
             make.size.equalTo(CGSize.init(width: 60.scale, height: 30.scale))
         }
+        
+        self.layoutIfNeeded()
     }
     
     @objc private func textViewTextDidChange() {
@@ -104,6 +107,7 @@ public class CTMultiLineOperationView: UIView {
     // MARK: - public method
     public func showKeyboard(text: String? = "") {
         self.textView.text = text
+        self.textViewValueChanged(self.textView.text)
         self.alpha = 1.0
         self.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: true, hasGesture: true, animationComplete: nil)
         KeyBoardMonitor.stand.monitor(enable: true) { (_ changeType: KeyBoardChangeType, _ startFrame: CGRect, _ endFrame: CGRect, _ duration: TimeInterval, _ userInfo: [AnyHashable: Any]?) in
@@ -136,22 +140,37 @@ public class CTMultiLineOperationView: UIView {
     func textViewValueChanged(_ text: String) {
         self.textViewTextDidChange()
         let textHeight = text.textRect(attributes: self.textView.attributedText.attributes, maxSize: CGSize.init(width: self.textView.width - 10, height: CGFloat.greatestFiniteMagnitude)).size.height
-        
         self.fixViewHeight(textHeight: textHeight)
     }
     
     func fixViewHeight(textHeight: CGFloat = 34) {
-        if textHeight != self.curTextHeight && textHeight <= self.maxTextHeight {
-            let diffHeight = (textHeight <= 34 ? 34 : textHeight) - self.curTextHeight
-            let oldFrame = self.frame
-            let newFrame = CGRect.init(x: oldFrame.origin.x, y: oldFrame.origin.y - diffHeight, width: oldFrame.size.width, height: oldFrame.height + diffHeight)
-            self.curTextHeight = textHeight <= 34 ? 34 : textHeight
-            UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-                self.frame = newFrame
-                self.textView.height = self.textView.height + diffHeight
-            }, completion: nil)
-        }else if textHeight < 34 {
-            self.curTextHeight = 34
+
+        if textHeight != self.curTextHeight {
+            if textHeight < 34 {
+                self.curTextHeight = 34
+            }else if textHeight <= self.maxTextHeight {
+                var diffHeight = textHeight - self.textView.height
+                diffHeight = diffHeight >= (34 - self.textView.height) ? diffHeight : (34 - self.textView.height)
+                let oldFrame = self.frame
+                let newFrame = CGRect.init(x: oldFrame.origin.x, y: oldFrame.origin.y - diffHeight, width: oldFrame.size.width, height: oldFrame.height + diffHeight)
+                self.curTextHeight = textHeight <= 34 ? 34 : textHeight
+                UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+                    self.frame = newFrame
+                    self.textView.height = self.textView.height + diffHeight
+                }, completion: nil)
+            }else {
+                if self.curTextHeight <= self.maxTextHeight {
+                    var diffHeight = textHeight - self.textView.height
+                    diffHeight = diffHeight >= (self.maxTextHeight - self.textView.height) ? (self.maxTextHeight - self.textView.height) : diffHeight
+                    let oldFrame = self.frame
+                    let newFrame = CGRect.init(x: oldFrame.origin.x, y: oldFrame.origin.y - diffHeight, width: oldFrame.size.width, height: oldFrame.height + diffHeight)
+                    self.curTextHeight = textHeight <= 34 ? 34 : textHeight
+                    UIView.animate(withDuration: 0.2, delay: 0, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+                        self.frame = newFrame
+                        self.textView.height = self.textView.height + diffHeight
+                    }, completion: nil)
+                }
+            }
         }
     }
     

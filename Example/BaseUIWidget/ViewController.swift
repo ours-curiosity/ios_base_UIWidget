@@ -85,7 +85,7 @@ class ViewController: UIViewController {
     
     @IBAction func showInputBtnAction(_ sender: UIButton) {
 //        self.inputTextView.showKeyboard()
-        self.inputOpTextView.showKeyboard()
+        self.inputOpTextView.showKeyboard(text: "klajds;lkgjakl 击时判断该设备是否安装Playhous击时判断该设备是否安装Playhous 击时判断该设备是否安装Playhous击时判断该设备是否安装Playhous 击时判断该设备是否安装Playhous")
     }
 }
 
