@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     func testInviteField() {
         
-        let filed = InviteFiled.init(frame: CGRect.init(x: 100, y: 400, width: 200, height: 40))
+        let filed = InviteFiled.init(frame: CGRect.init(x: 100, y: 120, width: 200, height: 40))
         filed.codeLimit = 4
         filed.inputBackGroundColor = UIColor.lightGray
         filed.cursorColor = UIColor.black
@@ -66,8 +66,26 @@ class ViewController: UIViewController {
         }
         return inputTextView
     }()
+    
+    lazy var inputOpTextView: CTMultiLineOperationView = {
+        let inputOpTextView = CTMultiLineOperationView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: 40 + 68.scale))
+        inputOpTextView.maxTextLen = 400
+        inputOpTextView.backgroundColor = UIColor.clear
+        inputOpTextView.textBgView.ct_cornerRadius = 8
+        inputOpTextView.doneAction = {(string, view) in
+            debugPrint("string: \(string), view: \(view)")
+        }
+        
+        inputOpTextView.cancelAction = {(string, view) in
+            debugPrint("string: \(string), view: \(view)")
+        }
+        return inputOpTextView
+    }()
+    
+    
     @IBAction func showInputBtnAction(_ sender: UIButton) {
-        self.inputTextView.showKeyboard()
+//        self.inputTextView.showKeyboard()
+        self.inputOpTextView.showKeyboard()
     }
 }
 

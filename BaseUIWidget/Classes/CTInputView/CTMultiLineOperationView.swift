@@ -1,16 +1,15 @@
 //
-//  CTMultiLineInputView.swift
+//  CTMultiLineOperationView.swift
 //  CTBaseUIWidget
 //
-//  Created by walker on 2021/1/4.
+//  Created by walker on 2021/3/8.
 //
 
 import Foundation
 import KMPlaceholderTextView
 import CTBaseFoundation
 
-public class CTMultiLineInputView: UIView {
-    
+public class CTMultiLineOperationView: UIView {
     var curTextHeight: CGFloat = 34
     /// 最大文本高度
     public var maxTextHeight: CGFloat = 82
@@ -20,8 +19,10 @@ public class CTMultiLineInputView: UIView {
     public var minTextLen: Int = 0
     // 是否忽略空格
     public var autoRemoveSpaces: Bool = false
-    /// 发送按钮事件
-    public var sendBtnAction: ((_ text: String, _ inputView: CTMultiLineInputView)->())?
+    /// Done按钮事件
+    public var doneAction: ((_ text: String?, _ inputView: CTMultiLineOperationView)->())?
+    /// cancel按钮事件
+    public var cancelAction: ((_ text: String?, _ inputView: CTMultiLineOperationView)->())?
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,7 +48,8 @@ public class CTMultiLineInputView: UIView {
     func setUpUI() {
         self.addSubview(self.textBgView)
         self.textBgView.addSubview(self.textView)
-//        self.textBgView.addSubview(self.sendBtn)
+        self.addSubview(self.doneBtn)
+        self.addSubview(self.cancelBtn)
         layout()
     }
     
@@ -57,7 +59,7 @@ public class CTMultiLineInputView: UIView {
             make.left.equalToSuperview().offset(16.scale)
             make.right.equalToSuperview().offset(-16.scale)
             make.top.equalToSuperview().offset(12.scale)
-            make.bottom.equalToSuperview().offset(-12.scale)
+            make.bottom.equalToSuperview().offset(-56.scale)
         }
         
         self.textView.snp.makeConstraints { (make) in
@@ -65,6 +67,16 @@ public class CTMultiLineInputView: UIView {
             make.right.equalToSuperview().offset(-5.scale)
             make.top.equalToSuperview().offset(3.scale)
             make.bottom.equalToSuperview().offset(-3.scale)
+        }
+        
+        self.cancelBtn.snp.makeConstraints { (make) in
+            make.left.equalToSuperview().offset(16.scale)
+            make.top.equalTo(self.textBgView.snp.bottom).offset(16.scale)
+        }
+        
+        self.doneBtn.snp.makeConstraints { (make) in
+            make.right.equalToSuperview().offset(-16.scale)
+            make.top.equalTo(self.textBgView.snp.bottom).offset(16.scale)
         }
     }
     
@@ -77,6 +89,14 @@ public class CTMultiLineInputView: UIView {
         if fixText.countOfChars() > self.maxTextLen {
             self.textView.text = fixText.subString(to: self.maxTextLen)
         }
+    }
+    
+    @objc private func doneBtnAction() {
+        self.doneAction?(self.textView.text, self)
+    }
+    
+    @objc private func cancelBtnAction() {
+        self.cancelAction?(self.textView.text, self)
     }
     
     // MARK: - public method
@@ -141,39 +161,44 @@ public class CTMultiLineInputView: UIView {
         textView.delegate = self
         textView.showsVerticalScrollIndicator = false
         textView.showsHorizontalScrollIndicator = false
-        textView.returnKeyType = .send
         textView.enablesReturnKeyAutomatically = true
         textView.backgroundColor = UIColor.clear
         return textView
     }()
     
-    public lazy var sendBtn: UIButton = {
-        let sendBtn = UIButton.init()
-        return sendBtn
+    public lazy var doneBtn: UIButton = {
+        let doneBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60.scale, height: 30.scale))
+        doneBtn.setTitle("Done", for: UIControl.State.normal)
+        doneBtn.addTarget(self, action: #selector(doneBtnAction), for: .touchUpInside)
+        doneBtn.ct_cornerRadius = 6.scale
+        return doneBtn
+    }()
+    
+    public lazy var cancelBtn: UIButton = {
+        let cancelBtn = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 60.scale, height: 30.scale))
+        cancelBtn.setTitle("Cancel", for: UIControl.State.normal)
+        cancelBtn.addTarget(self, action: #selector(cancelBtnAction), for: .touchUpInside)
+        return cancelBtn
     }()
     
     public lazy var textBgView: UIView = {
         let textBgView = UIView.init()
+        textBgView.backgroundColor = UIColor.white
         return textBgView
     }()
 }
 
-extension CTMultiLineInputView: UITextViewDelegate {
+extension CTMultiLineOperationView: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            self.sendBtnAction?(textView.text, self)
-            return false
-        }else {
-            self.textViewValueChanged(textView.text + text)
-            return true
-        }
+        self.textViewValueChanged(textView.text + text)
+        return true
     }
     public func textViewDidChange(_ textView: UITextView) {
         self.textViewValueChanged(textView.text)
     }
 }
 
-extension CTMultiLineInputView {
+extension CTMultiLineOperationView {
     public override func windowBackGroundTapAction(tap: UITapGestureRecognizer) {
         if tap.location(in: self).y < -15 {
             self.hideKeyboard()
