@@ -13,9 +13,10 @@ public class SysJumpManager: NSObject {
     public static let stand = SysJumpManager()
     private override init(){}
     
-    public func sendSMS(rootVC: UIViewController?, body: String?, phones: [String]? = nil){
+    public func sendSMS(rootVC: UIViewController?, body: String?, phones: [String]? = nil, complete: ((_ phone: [String]?, _ body: String?)->())? = nil){
         if !MFMessageComposeViewController.canSendText() {
             print("MFMessage can't send text!")
+            complete?(nil, nil)
             return
         }
         let smsVC = MFMessageComposeViewController.init()
@@ -26,11 +27,16 @@ public class SysJumpManager: NSObject {
         }
         
         if rootVC != nil{
-            rootVC?.present(smsVC, animated: true, completion: nil)
+            rootVC?.present(smsVC, animated: true, completion: {
+                complete?(phones, body)
+            })
         }else {
-            UIViewController.topViewController?.present(smsVC, animated: true, completion: nil)
+            UIViewController.topViewController?.present(smsVC, animated: true, completion: {
+                complete?(phones, body)
+            })
         }
     }
+    
     public func sendEmail(rootVC: UIViewController?,errMsg:String,body:String,title:String,email:String)->Error?{
         /// TODO :
         if MFMailComposeViewController.canSendMail(){//是否可以发邮件 // 如果不能,去系统设置接收邮箱
