@@ -88,5 +88,9 @@ class ViewController: UIViewController {
 //        self.inputTextView.showKeyboard()
         self.inputOpTextView.showKeyboard(text: "klajds;lkgjakl 击时判断该设备是否安装Playhous击时判断该设备是否安装Playhous 击时判断该设备是否安装Playhous击时判断该设备是否安装Playhous 击时判断该设备是否安装Playhous")
     }
+    @IBAction func listViewAction(_ sender: UIButton) {
+        
+        self.navigationController?.pushViewController(ListViewController())
+    }
 }
 

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
     s.name             = 'CTBaseUIWidget'
-    s.version          = '0.4.9.6'
+    s.version          = '0.4.9.7'
     s.summary          = 'iOS 快速开发时可用的UI组件.'
     
     # This description is used to generate tags and improve search results.
@@ -80,4 +80,5 @@ Pod::Spec.new do |s|
     end
     
     s.dependency 'CTBaseFoundation/UIKit'
+    s.dependency 'MJRefresh'
 end
