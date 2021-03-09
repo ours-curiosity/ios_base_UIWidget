@@ -63,7 +63,7 @@ public class CTToast {
     ///   - title: 标题
     ///   - image: 图片
     ///   - completion: 展示结束
-    public class func ct_showPositionToast(baseView: UIView?, message: String?, duration: TimeInterval = 3.0, position: CTToastPosition = .center, title: String?, image: UIImage?, completion: ((Bool) -> Void)?) {
+    public class func ct_showPositionToast(baseView: UIView?, message: String?, duration: TimeInterval = 2.0, position: CTToastPosition = .center, title: String?, image: UIImage?, completion: ((Bool) -> Void)?) {
         (baseView ?? self.ct_defaultView())?.makeToast(message, duration: duration, position: position.ct_swiftToastPostion(), title: title, image: image, style: ToastStyle(), completion: completion)
     }
     
@@ -76,7 +76,7 @@ public class CTToast {
     ///   - title: 标题
     ///   - image: 图片
     ///   - completion: 展示结束
-    public class func ct_showPointToast(baseView: UIView?, message: String?, duration: TimeInterval = 3.0, point: CGPoint = .zero, title: String?, image: UIImage?, completion: ((Bool) -> Void)?) {
+    public class func ct_showPointToast(baseView: UIView?, message: String?, duration: TimeInterval = 2.0, point: CGPoint = .zero, title: String?, image: UIImage?, completion: ((Bool) -> Void)?) {
         (baseView ?? self.ct_defaultView())?.makeToast(message, duration: duration, point: point, title: title, image: image, style: ToastStyle(), completion: completion)
     }
     
