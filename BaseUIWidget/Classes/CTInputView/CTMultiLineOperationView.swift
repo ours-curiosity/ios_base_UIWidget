@@ -105,9 +105,11 @@ public class CTMultiLineOperationView: UIView {
     }
     
     // MARK: - public method
-    public func showKeyboard(text: String? = "") {
-        self.textView.text = text
-        self.textViewValueChanged(self.textView.text)
+    public func showKeyboard(text: String? = nil) {
+        if text != nil {
+            self.textView.text = text
+            self.textViewValueChanged(self.textView.text)
+        }
         self.alpha = 1.0
         self.ct_showAtWindow(location: .bottomCenter(offset: .zero), hasMask: true, hasGesture: true, animationComplete: nil)
         KeyBoardMonitor.stand.monitor(enable: true) { (_ changeType: KeyBoardChangeType, _ startFrame: CGRect, _ endFrame: CGRect, _ duration: TimeInterval, _ userInfo: [AnyHashable: Any]?) in
