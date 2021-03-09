@@ -17,6 +17,8 @@ public class CTMultiLineOperationView: UIView {
     public var maxTextLen: Int = 150
     // 最小字数限制
     public var minTextLen: Int = 0
+    // 最大允许主动换行数，默认为0，不限制
+    public var maxLineBreak: Int = 0
     // 是否忽略空格
     public var autoRemoveSpaces: Bool = false
     /// Done按钮事件
@@ -89,8 +91,16 @@ public class CTMultiLineOperationView: UIView {
         // 总的字符
         let fullText = self.textView.text ?? ""
         // 修复后的字符串
-        let fixText: String = self.autoRemoveSpaces ? fullText.removeHeadAndTailSpaceAndNewlines() : fullText
-        // 截断字符串
+        var fixText: String = self.autoRemoveSpaces ? fullText.removeHeadAndTailSpaceAndNewlines() : fullText
+        
+        let lineBreakCount = fixText.lineBreakCount()
+        if self.maxLineBreak > 0 && lineBreakCount > self.maxLineBreak {
+            let stringArray = fixText.components(separatedBy: "\n").dropLast(lineBreakCount - self.maxLineBreak)
+            fixText = stringArray.joined(separator: "\n")
+            self.textView.text = fixText
+        }
+        
+        // 判断最大允许字符，超出截断字符串
         if fixText.countOfChars() > self.maxTextLen {
             self.textView.text = fixText.subString(to: self.maxTextLen)
         }

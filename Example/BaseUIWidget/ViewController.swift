@@ -70,6 +70,7 @@ class ViewController: UIViewController {
     lazy var inputOpTextView: CTMultiLineOperationView = {
         let inputOpTextView = CTMultiLineOperationView.init(frame: CGRect.init(x: 0, y: 0, width: UIFit.width, height: 40 + 68.scale))
         inputOpTextView.maxTextLen = 400
+        inputOpTextView.maxLineBreak = 2
         inputOpTextView.backgroundColor = UIColor.clear
         inputOpTextView.textBgView.ct_cornerRadius = 8
         inputOpTextView.doneAction = {(string, view) in
