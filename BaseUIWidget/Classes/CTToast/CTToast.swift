@@ -35,9 +35,11 @@ public class CTToast {
     ///   - prevetUserAction 是否阻止用户交互
     ///   - position: 位置
     public class func ct_showIndicator(baseView: UIView?, preventUserAction: Bool = true, position: CTToastPosition = .center) {
-        if let view = (baseView ?? self.ct_defaultView()) {
-            view.isUserInteractionEnabled = !preventUserAction
-            view.makeToastActivity(position.ct_swiftToastPostion())
+        DispatchQueue.main.async {
+            if let view = (baseView ?? self.ct_defaultView()) {
+                view.isUserInteractionEnabled = !preventUserAction
+                view.makeToastActivity(position.ct_swiftToastPostion())
+            }
         }
     }
     
@@ -47,10 +49,12 @@ public class CTToast {
     ///   - prevetUserAction 是否阻止用户交互
     ///   - point: 中心坐标
     public class func ct_showIndicator(baseView: UIView?, preventUserAction: Bool = true ,point: CGPoint = .zero) {
-        (baseView ?? Self.ct_defaultView())?.makeToastActivity(point)
-        if let view = (baseView ?? self.ct_defaultView()) {
-            view.isUserInteractionEnabled = !preventUserAction
-            view.makeToastActivity(point)
+        DispatchQueue.main.async {
+            (baseView ?? Self.ct_defaultView())?.makeToastActivity(point)
+            if let view = (baseView ?? self.ct_defaultView()) {
+                view.isUserInteractionEnabled = !preventUserAction
+                view.makeToastActivity(point)
+            }
         }
     }
     
@@ -64,7 +68,9 @@ public class CTToast {
     ///   - image: 图片
     ///   - completion: 展示结束
     public class func ct_showPositionToast(baseView: UIView?, message: String?, duration: TimeInterval = 2.0, position: CTToastPosition = .center, title: String?, image: UIImage?, completion: ((Bool) -> Void)?) {
-        (baseView ?? self.ct_defaultView())?.makeToast(message, duration: duration, position: position.ct_swiftToastPostion(), title: title, image: image, style: ToastStyle(), completion: completion)
+        DispatchQueue.main.async {
+            (baseView ?? self.ct_defaultView())?.makeToast(message, duration: duration, position: position.ct_swiftToastPostion(), title: title, image: image, style: ToastStyle(), completion: completion)
+        }
     }
     
     /// 显示toast，指定坐标
@@ -77,7 +83,9 @@ public class CTToast {
     ///   - image: 图片
     ///   - completion: 展示结束
     public class func ct_showPointToast(baseView: UIView?, message: String?, duration: TimeInterval = 2.0, point: CGPoint = .zero, title: String?, image: UIImage?, completion: ((Bool) -> Void)?) {
-        (baseView ?? self.ct_defaultView())?.makeToast(message, duration: duration, point: point, title: title, image: image, style: ToastStyle(), completion: completion)
+        DispatchQueue.main.async {
+            (baseView ?? self.ct_defaultView())?.makeToast(message, duration: duration, point: point, title: title, image: image, style: ToastStyle(), completion: completion)
+        }
     }
     
     /// 隐藏toast
