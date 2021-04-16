@@ -15,6 +15,13 @@ public class LFGUserAvatar:UIView{
     public var avatarView:UIImageView?
     var placeHolder : UIImage?
     public var avatarViewbgColor:UIColor = .clear
+    public var avatarFrameViewWidth:CGFloat?{
+        didSet{
+            if let w = avatarFrameViewWidth{
+                avatarView?.ct_cornerRadius = w/2
+            }
+        }
+    }
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
