@@ -15,13 +15,7 @@ public class LFGUserAvatar:UIView{
     public var avatarView:UIImageView?
     var placeHolder : UIImage?
     public var avatarViewbgColor:UIColor = .clear
-    public var avatarFrameViewWidth:CGFloat?{
-        didSet{
-            if let w = avatarFrameViewWidth{
-                avatarView?.ct_cornerRadius = w/2
-            }
-        }
-    }
+   
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -45,12 +39,6 @@ public class LFGUserAvatar:UIView{
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    public override func layoutSubviews() {
-        if let _avatarView = avatarView{
-            _avatarView.ct_cornerRadius = _avatarView.width/2
-            _avatarView.backgroundColor = avatarViewbgColor
-        }
     }
     
     private func setup(){
@@ -84,7 +72,6 @@ public class LFGUserAvatar:UIView{
         if avatar == nil,avatarFrame == nil{
             avatarView?.image = placeHolder
         }
-        layoutSubviews()
     }
     /// 更新头像 - UIImage
     public func updateImage(avatar:UIImage? = nil,avatarFrame:UIImage? = nil) {
@@ -97,6 +84,5 @@ public class LFGUserAvatar:UIView{
         if avatar == nil,avatarFrame == nil{
             avatarView?.image = placeHolder
         }
-        layoutSubviews()
     }
 }
