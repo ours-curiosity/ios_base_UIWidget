@@ -8,20 +8,29 @@
 import UIKit
 import Kingfisher
 @objcMembers
+
 public class LFGUserAvatar:UIView{
 
     public var avatarFrameView:UIImageView?
     public var avatarView:UIImageView?
+    var placeHolder : UIImage?
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
     }
-    public init(url avatar:String,avatarFrame:String) {
+    
+    public init(placeholder img:UIImage? = nil) {
+        super.init(frame: .zero)
+        setup()
+        placeHolder = img
+        updateImage(avatar: img)
+    }
+    public init(url avatar:String? = nil,avatarFrame:String? = nil) {
         super.init(frame: .zero)
         setup()
         updateURL(avatar: avatar, avatarFrame: avatarFrame)
     }
-    public init(img avatar:UIImage,avatarFrame:UIImage) {
+    public init(img avatar:UIImage? = nil,avatarFrame:UIImage? = nil) {
         super.init(frame: .zero)
         setup()
         updateImage(avatar: avatar, avatarFrame: avatarFrame)
@@ -56,15 +65,29 @@ public class LFGUserAvatar:UIView{
         
     }
     /// 更新头像 - url
-    public func updateURL(avatar:String,avatarFrame:String) {
-        avatarView?.kf.setImage(with: URL(string: avatar))
-        avatarFrameView?.kf.setImage(with: URL(string: avatarFrame))
+    public func updateURL(avatar:String? = nil,avatarFrame:String? = nil) {
+        if let _avatar = avatar{
+            avatarView?.kf.setImage(with: URL(string: _avatar))
+        }
+        if let _avatarFrame = avatarFrame{
+            avatarFrameView?.kf.setImage(with: URL(string: _avatarFrame))
+        }
+        if avatar == nil,avatarFrame == nil{
+            avatarView?.image = placeHolder
+        }
         layoutSubviews()
     }
     /// 更新头像 - UIImage
-    public func updateImage(avatar:UIImage,avatarFrame:UIImage) {
-        avatarView?.image = avatar
-        avatarFrameView?.image = avatarFrame
+    public func updateImage(avatar:UIImage? = nil,avatarFrame:UIImage? = nil) {
+        if let _avatar = avatar{
+            avatarView?.image = _avatar
+        }
+        if let _avatarFrame = avatarFrame{
+            avatarFrameView?.image = _avatarFrame
+        }
+        if avatar == nil,avatarFrame == nil{
+            avatarView?.image = placeHolder
+        }
         layoutSubviews()
     }
 }
