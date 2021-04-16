@@ -81,4 +81,5 @@ Pod::Spec.new do |s|
     
     s.dependency 'CTBaseFoundation/UIKit'
     s.dependency 'MJRefresh'
+    s.dependency 'Kingfisher'
 end
