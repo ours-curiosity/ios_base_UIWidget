@@ -21,10 +21,10 @@ public class LFGUserAvatar:UIView{
         setup()
         updateURL(avatar: avatar, avatarFrame: avatarFrame)
     }
-    public init(name avatar:String,avatarFrame:String) {
+    public init(img avatar:UIImage,avatarFrame:UIImage) {
         super.init(frame: .zero)
         setup()
-        updateName(avatar: avatar, avatarFrame: avatarFrame)
+        updateImage(avatar: avatar, avatarFrame: avatarFrame)
     }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
