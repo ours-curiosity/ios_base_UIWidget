@@ -14,6 +14,7 @@ public class LFGUserAvatar:UIView{
     public var avatarFrameView:UIImageView?
     public var avatarView:UIImageView?
     var placeHolder : UIImage?
+    public var avatarViewbgColor:UIColor = .clear
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -41,7 +42,7 @@ public class LFGUserAvatar:UIView{
     public override func layoutSubviews() {
         if let _avatarView = avatarView{
             _avatarView.ct_cornerRadius = _avatarView.width/2
-            _avatarView.layer.masksToBounds = true
+            _avatarView.backgroundColor = avatarViewbgColor
         }
     }
     
@@ -50,7 +51,8 @@ public class LFGUserAvatar:UIView{
         avatarView  = UIImageView()
         avatarView?.contentMode = .scaleAspectFill
         avatarFrameView?.contentMode = .scaleAspectFill
-
+        avatarFrameView?.backgroundColor = .clear
+        avatarView?.backgroundColor = .clear
         addSubview(avatarView!)
         addSubview(avatarFrameView!)
         
