@@ -61,10 +61,10 @@ public class LFGUserAvatar:UIView{
         avatarFrameView?.kf.setImage(with: URL(string: avatarFrame))
         layoutSubviews()
     }
-    /// 更新头像 - 资源名称
-    public func updateName(avatar:String,avatarFrame:String) {
-        avatarView?.kf.setImage(with: URL(string: avatar))
-        avatarFrameView?.kf.setImage(with: URL(string: avatarFrame))
+    /// 更新头像 - UIImage
+    public func updateImage(avatar:UIImage,avatarFrame:UIImage) {
+        avatarView?.image = avatar
+        avatarFrameView?.image = avatarFrame
         layoutSubviews()
     }
 }
